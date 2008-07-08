@@ -2,30 +2,15 @@ package WikiText::HTML::Emitter;
 use strict;
 use warnings;
 
-use base 'WikiText::Receiver';
+use base 'WikiText::Emitter';
 use CGI::Util;
 
 my $type_tags = {
     b => 'strong',
     i => 'em',
     wikilink => 'a',
+    hyperlink => 'a',
 };
-
-sub init {
-    my $self = shift;
-    $self->{output} = '';
-}
-
-sub content {
-    my $self = shift;
-    return $self->{output};
-}
-
-sub insert {
-    my $self = shift;
-    my $ast = shift;
-    $self->{output} .= $ast->{output} || '';
-}
 
 sub uri_escape {
     $_ = shift;
@@ -43,10 +28,22 @@ sub begin_node {
     $self->{output} .=
       ($tag =~ /^(br|hr)$/)
         ? "<$tag />\n" 
+        : ($type eq "hyperlink")
+          ?  $self->begin_hyperlink($node)
         : ($type eq "wikilink")
           ?  $self->begin_wikilink($node)
           : "<$tag>" .
             ($tag =~ /^(ul|ol|table|tr)$/ ? "\n" : "");
+}
+
+sub begin_hyperlink {
+    my $self = shift;
+    my $node = shift;
+    my $tag = $node->{type};
+
+    my $link = $node->{attributes}{target};
+
+    return qq{<a href="$link">};
 }
 
 sub begin_wikilink {
@@ -57,7 +54,10 @@ sub begin_wikilink {
     my $link = $self->{callbacks}{wikilink}
         ? $self->{callbacks}{wikilink}->($node)
         : CGI::Util::escape($node->{attributes}{target});
-    return qq{<a href="$link">};
+
+    my $class = $node->{attributes}{class};
+    $class = $class ? qq{ class="$class"} : '';
+    return qq{<a href="$link"$class>};
 }
 
 sub end_node {
@@ -67,10 +67,6 @@ sub end_node {
     my $tag = $type_tags->{$type} || $type;
     $tag =~ s/-.*//;
     return if ($tag =~ /^(br|hr)$/);
-    if ($tag eq "wikilink") {
-        $self->{output} .= '</a>';
-        return;
-    }
     $self->{output} .= "</$tag>" .
         ($tag =~ /^(p|hr|ul|ol|li|h\d|table|tr|td)$/ ? "\n" : "");
 }

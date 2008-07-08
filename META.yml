@@ -1,8 +1,9 @@
 --- 
 abstract: Wiki Text Conversion Tools
-author: "Ingy d\xC3\xB6t Net <ingy@cpan.org>"
+author: 
+  - "Ingy d\xC3\xB6t Net <ingy@cpan.org>"
 distribution_type: module
-generated_by: Module::Install version 0.67
+generated_by: Module::Install version 0.68
 license: perl
 meta-spec: 
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -14,4 +15,4 @@ no_index:
     - t
 requires: 
   perl: 5.6.1
-version: 0.08
+version: 0.09
