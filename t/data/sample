@@ -104,3 +104,29 @@ bar
 +p
  0
 -p
+
+=== Simple indented pre block like markdown
+--- sample
+  codes
+--- html
+<pre>codes</pre>
+
+=== Text before indented pre block
+--- sample
+A paragraph
+  codes yay
+--- html
+<p>A paragraph</p>
+<pre>codes yay</pre>
+
+=== Text after space indented pre blocks
+--- sample
+  code1
+  code2
+
+Not code
+
+--- html
+<pre>code1
+code2</pre>
+<p>Not code</p>

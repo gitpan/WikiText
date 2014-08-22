@@ -1,15 +1,16 @@
-package t::TestWikiText;
+use lib -e 't' ? 't' : 'test';
+package TestWikiText;
 use Test::Base -Base;
 
-package t::TestWikiText::Filter;
+package TestWikiText::Filter;
 use Test::Base::Filter -base;
 
 sub parse_wikitext {
-    eval "require $t::TestWikiText::parser_module; 1" or die;
-    eval "require $t::TestWikiText::emitter_module; 1" or die;
+    eval "require $TestWikiText::parser_module; 1" or die;
+    eval "require $TestWikiText::emitter_module; 1" or die;
 
-    my $parser = $t::TestWikiText::parser_module->new(
-        receiver => $t::TestWikiText::emitter_module->new,
+    my $parser = $TestWikiText::parser_module->new(
+        receiver => $TestWikiText::emitter_module->new,
     );
     $parser->parse(shift);
 }

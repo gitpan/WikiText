@@ -1,4 +1,3 @@
-#line 1
 #===============================================================================
 # This is the default class for handling Test::Base data filtering.
 #===============================================================================
@@ -336,6 +335,4 @@ sub _write_to {
       or die "Couldn't close $filename: $!\n";
 }
 
-__DATA__
-
-#line 636
+1;
