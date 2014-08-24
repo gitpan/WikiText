@@ -1,3 +1,6 @@
+0.17 Sun Aug 24 07:10:54 PDT 2014
+ - Try some ::namespace tricks for indexing
+
 0.16 Fri Aug 22 09:25:52 PDT 2014
  - Switch to Zilla-Dist
 
