@@ -12,6 +12,7 @@ inc/Test/Base.pm
 inc/Test/Base/Filter.pm
 lib/WikiText.pm
 lib/WikiText.pod
+lib/WikiText/Alias.pm
 lib/WikiText/Emitter.pm
 lib/WikiText/HTML/Emitter.pm
 lib/WikiText/Parser.pm
@@ -23,7 +24,6 @@ lib/WikiText/Sample/Parser.pm
 lib/WikiText/Sample/Parser.pod
 lib/WikiText/WikiByte/Emitter.pm
 lib/WikiText/WikiByte/Emitter.pod
-lib/WikiText/namespace.pm
 t/000-compile-modules.t
 t/TestWikiText.pm
 t/data/sample
