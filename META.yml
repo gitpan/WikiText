@@ -24,4 +24,4 @@ resources:
   bugtracker: https://github.com/ingydotnet/wikitext-pm/issues
   homepage: https://github.com/ingydotnet/wikitext-pm
   repository: https://github.com/ingydotnet/wikitext-pm.git
-version: '0.17'
+version: '0.18'
